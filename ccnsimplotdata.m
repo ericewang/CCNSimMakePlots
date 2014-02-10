@@ -3,6 +3,10 @@
 % Run "ccnsimloaddata" before this script.
 % For convenience, the generated plots are saved in a PDF file.
 
+% set the folder name to be used at
+foldername = pwd;
+foldername = [foldername, '\'];
+
 % % start data recording
 % profile on
 
@@ -225,7 +229,7 @@ tempTime = datestr(now,0);
 currentTime = strrep(tempTime, ':', '-');
 
 if exist([outputfile,' ',currentTime]) ~= 0
-    rmdir(['C:\Users\Michael Burd\Documents\MATLAB\', outputfile,' ',currentTime],'s');
+    rmdir([foldername, outputfile,' ',currentTime],'s');
 end
 
 % make directory for files to be saved into
@@ -234,7 +238,7 @@ mkdir([outputfile,' ',currentTime]);
 %saveas(h,[outputfile, '.fig']);
 print('-dpdf','All Nodes All Objects.pdf');
 pdflist{1}=('All Nodes All Objects.pdf');
-movefile('C:\Users\Michael Burd\Documents\MATLAB\All Nodes All Objects.pdf',['C:\Users\Michael Burd\Documents\MATLAB\', outputfile,' ',currentTime,'\']);
+movefile([foldername, 'All Nodes All Objects.pdf'],[foldername, outputfile,' ',currentTime,'\']);
 close();
 %print('-depsc2',[outputfile, '.eps']);
 
@@ -330,7 +334,7 @@ for nodeNumber = 1 : numberOfNodes
         
         print('-dpdf',['Object ', objectText,' at ', nodeMap{nodeNumber,1},'.pdf']);
         pdflist{figureCount}=(['Object ', objectText,' at ', nodeMap{nodeNumber,1},'.pdf']);
-        movefile(['C:\Users\Michael Burd\Documents\MATLAB\','Object ', objectText,' at ', nodeMap{nodeNumber,1},'.pdf'],['C:\Users\Michael Burd\Documents\MATLAB\', outputfile,' ',currentTime,'\'])
+        movefile([foldername,'Object ', objectText,' at ', nodeMap{nodeNumber,1},'.pdf'],[foldername, outputfile,' ',currentTime,'\'])
         close();
     end
 end
@@ -489,7 +493,7 @@ end
     %saveas(h,[outputfile, '.fig']);
     print('-dpdf',['All Objects at ', specificAC{nodeListNumber,1}, '.pdf']);
     pdflist{figureCount}=(['All Objects at ', specificAC{nodeListNumber,1}, '.pdf']);
-    movefile(['C:\Users\Michael Burd\Documents\MATLAB\All Objects at ', specificAC{nodeListNumber,1}, '.pdf'],['C:\Users\Michael Burd\Documents\MATLAB\', outputfile,' ',currentTime,'\']);
+    movefile([foldername, 'All Objects at ', specificAC{nodeListNumber,1}, '.pdf'],[foldername, outputfile,' ',currentTime,'\']);
     close();
     %print('-depsc2',[outputfile, '.eps']);
 end
@@ -623,14 +627,15 @@ end
     %saveas(h,[outputfile, '.fig']);
     print('-dpdf',['All nodes for ', specificObject{nodeListNumber,1}, '.pdf']);
     pdflist{figureCount}=(['All nodes for ', specificObject{nodeListNumber,1}, '.pdf']);
-    movefile(['C:\Users\Michael Burd\Documents\MATLAB\All nodes for ', specificObject{nodeListNumber,1}, '.pdf'],['C:\Users\Michael Burd\Documents\MATLAB\', outputfile,' ',currentTime,'\']);
+    movefile([foldername, 'All nodes for ', specificObject{nodeListNumber,1}, '.pdf'],[foldername, outputfile,' ',currentTime,'\']);
     close();
     %print('-depsc2',[outputfile, '.eps']);
 end
 
-cd(['C:\Users\Michael Burd\Documents\MATLAB\', outputfile,' ',currentTime,'\']);
+clear cd
+cd([foldername, outputfile,' ',currentTime,'\']);
 append_pdfs('CombinedFile.pdf',pdflist{:});
-cd('C:\Users\Michael Burd\Documents\MATLAB');
+cd(foldername);
 
 fprintf('\nDone!');
 fprintf('\n\n');

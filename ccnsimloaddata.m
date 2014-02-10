@@ -143,9 +143,9 @@ while true
 			policy = paramsMap('[GENERAL]:policy');
             
             % Gets upstream neighbor selection criteria: Should be either ALL or BEST
-            if strcmp('LRU',policy) || strcmp('LFU',policy)
-                upstreamNeighborSelectionCriteria = paramsMap('[GENERAL]:upstream.neighbor.selection.criteria');
-            end
+            %if strcmp('LRU',policy) || strcmp('LFU',policy)
+            %    upstreamNeighborSelectionCriteria = paramsMap('[GENERAL]:upstream.neighbor.selection.criteria');
+            %end
 
 			% initialize matrix for Actual Requests (AR):
 			%   column 1: VolumeRequestsCreated(t)
