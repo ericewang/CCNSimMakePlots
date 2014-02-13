@@ -83,7 +83,7 @@ h = figure('OuterPosition',[0,0.1*scrsz(4),scrsz(3)/2,0.9*scrsz(4)]); % left,bot
 % save plot
 set(gcf,'PaperPosition',[0.1 0.1 8.3 10.8],'Visible','off');
 
-if strfind(policy,'VIRTUAL')
+if strcmp('VIRTUAL.BACKPRESSURE.B', policy) | strcmp('MODIFIED.VBP', policy)
     subplot(4,1,1);
 else
     subplot(3,1,1);
@@ -99,7 +99,7 @@ ylabel('Volume');
 title('Actual Requests (AR): Volume of Requests Created & Fulfilled',...
 	'interpreter','None');
 
-if strfind(policy,'VIRTUAL')
+if strcmp('VIRTUAL.BACKPRESSURE.B', policy) | strcmp('MODIFIED.VBP', policy)
     subplot(4,1,2);
 else
     subplot(3,1,2);
@@ -116,7 +116,7 @@ title('Actual Requests (AR): Delay for Fulfilled Requests',...
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % (2) MAKE PLOT FOR ACTUAL CACHES (AC) %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-if strfind(policy,'VIRTUAL')
+if strcmp('VIRTUAL.BACKPRESSURE.B', policy) | strcmp('MODIFIED.VBP', policy)
     subplot(4,1,3);
 else
     subplot(3,1,3);
@@ -136,7 +136,7 @@ title('Actual Caches (AC): Volume of Cache Hits & Evictions',...
 % (3) MAKE PLOT FOR VIRTUAL QUEUES (VQ) %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-if strcmp('VIRTUAL.BACKPRESSURE.A', policy)
+if strcmp('MODIFIED.VBP', policy)
 	subplot(4,1,4);
 	plot(times,VQ_raw(:,1));
 	legend(['VolumeVIPsQueued(t)= ' num2str(mean(VQ_raw(:,1)))]);
@@ -176,14 +176,14 @@ else
         ['  Total Hops=', totalHops]};
 end
 
-if strcmp('VIRTUAL.BACKPRESSURE.A', policy)
+if strcmp('MODIFIED.VBP', policy)
 	paramsSummary = {paramsSummary{:},...
-		['  [VIRTUAL.BACKPRESSURE.A] virtual.plane.time.speedup.factor=',...
-		paramsMap('[VIRTUAL.BACKPRESSURE.A]:virtual.plane.time.speedup.factor')],...
-		['  [VIRTUAL.BACKPRESSURE.A] vip.averaging.window.size=',...
-		paramsMap('[VIRTUAL.BACKPRESSURE.A]:vip.averaging.window.size')],...
-		['  [VIRTUAL.BACKPRESSURE.A] cached.vip.queue.length.scaling.factor=',...
-		paramsMap('[VIRTUAL.BACKPRESSURE.A]:cached.vip.queue.length.scaling.factor')]};		
+		['  [MODIFIED.VBP] virtual.plane.time.speedup.factor=',...
+		paramsMap('[MODIFIED.VBP]:virtual.plane.time.speedup.factor')],...
+		['  [MODIFIED.VBP] vip.averaging.window.size=',...
+		paramsMap('[MODIFIED.VBP]:vip.averaging.window.size')],...
+		['  [MODIFIED.VBP] cached.vip.queue.length.scaling.factor=',...
+		paramsMap('[MODIFIED.VBP]:cached.vip.queue.length.scaling.factor')]};		
 end
 if strcmp('VIRTUAL.BACKPRESSURE.B', policy)
 	paramsSummary = {paramsSummary{:},...
@@ -299,7 +299,7 @@ for nodeNumber = 1 : numberOfNodes
 % % %     % MAKE PLOT FOR VIRTUAL QUEUES (VQ) %
 % % %     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % % % 
-% % %     if strcmp('VIRTUAL.BACKPRESSURE.A', policy)
+% % %     if strcmp('MODIFIED.VBP', policy)
 % % %         subplot(5,1,4);
 % % %         plot(times,[specificObject{nodeListNumber:numberOfObjects:totalRowsObjects,7}]');
 % % %         legend('VolumeVIPsQueued(t)');
@@ -353,7 +353,7 @@ for nodeListNumber = 1 : numberOfNodes
     
     % save plot
     set(gcf,'PaperPosition',[0.1 0.1 8.3 10.8],'Visible','off');
-    if strfind(policy,'VIRTUAL')
+    if strcmp('VIRTUAL.BACKPRESSURE.B', policy) | strcmp('MODIFIED.VBP', policy)
         subplot(4,1,1);
     else
         subplot(3,1,1);
@@ -370,7 +370,7 @@ for nodeListNumber = 1 : numberOfNodes
     title('Actual Requests (AR): Volume of Requests Created & Fulfilled',...
         'interpreter','None');
 
-    if strfind(policy,'VIRTUAL')
+    if strcmp('VIRTUAL.BACKPRESSURE.B', policy) | strcmp('MODIFIED.VBP', policy)
         subplot(4,1,2);
     else
         subplot(3,1,2);
@@ -387,7 +387,7 @@ for nodeListNumber = 1 : numberOfNodes
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     % MAKE PLOT FOR ACTUAL CACHES (AC) %
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-if strfind(policy,'VIRTUAL')
+if strcmp('VIRTUAL.BACKPRESSURE.B', policy) | strcmp('MODIFIED.VBP', policy)
     subplot(4,1,3);
 else
     subplot(3,1,3);
@@ -408,7 +408,7 @@ end
     % MAKE PLOT FOR VIRTUAL QUEUES (VQ) %
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-    if strcmp('VIRTUAL.BACKPRESSURE.A', policy)
+    if strcmp('VIRTUAL.BACKPRESSURE.B', policy) | strcmp('MODIFIED.VBP', policy)
         subplot(4,1,4);
         plot(times,[specificVQ{nodeListNumber:numberOfNodes:totalRowsNodes,2}]');
         legend(['VolumeVIPsQueued(t)= ' num2str(mean([specificVQ{nodeListNumber:numberOfNodes:totalRowsNodes,2}]))]);
@@ -441,14 +441,14 @@ end
         ['  [GENERAL] description="', paramsMap('[GENERAL]:description'), '"'],...
         ['  [GENERAL] policy="', paramsMap('[GENERAL]:policy'), '"']};
 
-    if strcmp('VIRTUAL.BACKPRESSURE.A', policy)
+    if strcmp('MODIFIED.VBP', policy)
         paramsSummary = {paramsSummary{:},...
-            ['  [VIRTUAL.BACKPRESSURE.A] virtual.plane.time.speedup.factor=',...
-            paramsMap('[VIRTUAL.BACKPRESSURE.A]:virtual.plane.time.speedup.factor')],...
-            ['  [VIRTUAL.BACKPRESSURE.A] vip.averaging.window.size=',...
-            paramsMap('[VIRTUAL.BACKPRESSURE.A]:vip.averaging.window.size')],...
-            ['  [VIRTUAL.BACKPRESSURE.A] cached.vip.queue.length.scaling.factor=',...
-            paramsMap('[VIRTUAL.BACKPRESSURE.A]:cached.vip.queue.length.scaling.factor')]};		
+            ['  [MODIFIED.VBP] virtual.plane.time.speedup.factor=',...
+            paramsMap('[MODIFIED.VBP]:virtual.plane.time.speedup.factor')],...
+            ['  [MODIFIED.VBP] vip.averaging.window.size=',...
+            paramsMap('[MODIFIED.VBP]:vip.averaging.window.size')],...
+            ['  [MODIFIED.VBP] cached.vip.queue.length.scaling.factor=',...
+            paramsMap('[MODIFIED.VBP]:cached.vip.queue.length.scaling.factor')]};		
     end
     if strcmp('VIRTUAL.BACKPRESSURE.B', policy)
         paramsSummary = {paramsSummary{:},...
@@ -515,7 +515,7 @@ for nodeListNumber = 1 : numberOfObjects
     % save plot
     set(gcf,'PaperPosition',[0.1 0.1 8.3 10.8],'Visible','off');
     
-if strfind(policy,'VIRTUAL')    
+if strcmp('VIRTUAL.BACKPRESSURE.B', policy) | strcmp('MODIFIED.VBP', policy)    
     subplot(5,1,1);
 else
     subplot(4,1,1);
@@ -532,7 +532,7 @@ end
     title('Actual Requests (AR): Volume of Requests Created & Fulfilled',...
         'interpreter','None');
 
-if strfind(policy,'VIRTUAL')
+if strcmp('VIRTUAL.BACKPRESSURE.B', policy) | strcmp('MODIFIED.VBP', policy)
     subplot(5,1,2);
 else
     subplot(4,1,2);
@@ -550,7 +550,7 @@ end
     % MAKE PLOT FOR ACTUAL CACHES (AC) %
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-if strfind(policy,'VIRTUAL')
+if strcmp('VIRTUAL.BACKPRESSURE.B', policy) | strcmp('MODIFIED.VBP', policy)
     subplot(5,1,3);
 else
     subplot(4,1,3);
@@ -571,7 +571,7 @@ end
     % MAKE PLOT FOR VIRTUAL QUEUES (VQ) %
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-    if strcmp('VIRTUAL.BACKPRESSURE.A', policy)
+    if strcmp('MODIFIED.VBP', policy)
         subplot(5,1,4);
         plot(times,[specificObject{nodeListNumber:numberOfObjects:totalRowsObjects,7}]');
         legend(['VolumeVIPsQueued(t)= ' num2str(mean([specificObject{nodeListNumber:numberOfObjects:totalRowsObjects,7}]))]);
@@ -603,7 +603,7 @@ end
     % MAKE PLOT FOR CACHED OBJECTS (NCOs) %
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     
-    if strfind(policy,'VIRTUAL')
+    if strcmp('VIRTUAL.BACKPRESSURE.B', policy) | strcmp('MODIFIED.VBP', policy)
         subplot(5,1,5);
     else
         subplot(4,1,4);

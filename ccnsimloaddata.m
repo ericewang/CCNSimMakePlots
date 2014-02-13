@@ -162,7 +162,7 @@ while true
 
 			% initialize matrix for Virtual Queues (VQ):
 			%   column 1: VolumeVIPsQueued(t)
-			if strcmp('VIRTUAL.BACKPRESSURE.A', policy)
+			if strcmp('MODIFIED.VBP', policy)
 				VQ_raw = zeros(length(times), 1);
 				VQ_parsedNodes = java.util.HashSet(); % nodes already parsed for the current time step
             end
@@ -255,7 +255,7 @@ while true
                     NCO_parsedNodes.clear();
                     SO_parsedNodes.clear();
 
-					if strcmp('VIRTUAL.BACKPRESSURE.A', policy)
+					if strcmp('MODIFIED.VBP', policy)
 						VQ_parsedNodes.clear();
                     end
                     if strcmp('VIRTUAL.BACKPRESSURE.B', policy)
@@ -330,7 +330,7 @@ while true
                     NCO_parsedNodes.clear();
                     SO_parsedNodes.clear();
 
-					if strcmp('VIRTUAL.BACKPRESSURE.A', policy)
+					if strcmp('MODIFIED.VBP', policy)
 						VQ_parsedNodes.clear();
                     end
                     if strcmp('VIRTUAL.BACKPRESSURE.B', policy)
@@ -376,7 +376,7 @@ while true
 			AC_raw(times==timeStep,:) = AC_raw(times==timeStep,:) ...
 				+ [entryAC1,entryAC2];
 
-		elseif strcmp('VQ', entryType) && (strcmp('VIRTUAL.BACKPRESSURE.A', policy) || strcmp('VIRTUAL.BACKPRESSURE.B', policy) || strcmp('VIRTUAL.BACKPRESSURE.C', policy)) 
+		elseif strcmp('VQ', entryType) && (strcmp('MODIFIED.VBP', policy) || strcmp('VIRTUAL.BACKPRESSURE.B', policy) || strcmp('VIRTUAL.BACKPRESSURE.C', policy)) 
 
 			%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 			% (2.3) PARSE VIRTUAL QUEUES (VQ) ENTRY %
@@ -400,7 +400,7 @@ while true
                     NCO_parsedNodes.clear();
                     SO_parsedNodes.clear();
 
-					if strcmp('VIRTUAL.BACKPRESSURE.A', policy)
+					if strcmp('MODIFIED.VBP', policy)
 						VQ_parsedNodes.clear();
                     end
                     if strcmp('VIRTUAL.BACKPRESSURE.B', policy)
@@ -465,7 +465,7 @@ while true
                     NCO_parsedNodes.clear();
                     SO_parsedNodes.clear();
 
-					if strcmp('VIRTUAL.BACKPRESSURE.A', policy)
+					if strcmp('MODIFIED.VBP', policy)
 						VQ_parsedNodes.clear();
                     end
                     if strcmp('VIRTUAL.BACKPRESSURE.B', policy)
@@ -537,7 +537,7 @@ while true
                     NCO_parsedNodes.clear();
                     SO_parsedNodes.clear();
 
-					if strcmp('VIRTUAL.BACKPRESSURE.A', policy)
+					if strcmp('MODIFIED.VBP', policy)
 						VQ_parsedNodes.clear();
                     end
                     if strcmp('VIRTUAL.BACKPRESSURE.B', policy)
@@ -613,7 +613,7 @@ fprintf('\n\n');
 vars = {'outputfile','paramsMap',...
 	'times','AR_raw','AC_raw','nodeMap','specificAR','specificAC','specificVQ','specificObject'};
 
-if strcmp('VIRTUAL.BACKPRESSURE.A', policy)
+if strcmp('MODIFIED.VBP', policy)
 	vars = {vars{:}, 'VQ_raw'};
 end
 if strcmp('VIRTUAL.BACKPRESSURE.B', policy)
