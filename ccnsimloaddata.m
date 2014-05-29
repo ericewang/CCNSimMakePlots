@@ -9,7 +9,7 @@
 % profile on
 
 % clears home window
-clc
+%clc
 
 % display start time
 display(['Start Time: ' datestr(now)])

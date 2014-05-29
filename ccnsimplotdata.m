@@ -5,13 +5,13 @@
 
 % set the folder name to be used at
 foldername = pwd;
-foldername = [foldername, '\'];
+foldername = [foldername, '/'];
 
 % % start data recording
 % profile on
 
 % clear main screen
-clc;
+%clc;
 
 % display start time
 display(['Start Time: ' datestr(now)]);
@@ -99,6 +99,11 @@ ylabel('Volume');
 title('Actual Requests (AR): Volume of Requests Created & Fulfilled',...
 	'interpreter','None');
 
+string = sprintf('\nVolumeRequestsCreated(t)= %f', mean(AR_raw(:,1)));
+disp(string)
+string = sprintf('VolumeRequestsFulfilled(t) = %f\n', mean(AR_raw(:,2)));
+disp(string)
+
 if strcmp('VIRTUAL.BACKPRESSURE.B', policy) | strcmp('MODIFIED.VBP', policy)
     subplot(4,1,2);
 else
@@ -112,6 +117,9 @@ xlabel('Time');
 ylabel('Delay');
 title('Actual Requests (AR): Delay for Fulfilled Requests',...
 	'interpreter','None');
+
+string = sprintf('DelayRequestsFulfilled(t) = %f\n', mean(AR_raw(:,3)));
+disp(string)
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % (2) MAKE PLOT FOR ACTUAL CACHES (AC) %
@@ -131,6 +139,11 @@ xlabel('Time');
 ylabel('Volume');
 title('Actual Caches (AC): Volume of Cache Hits & Evictions',...
 	'interpreter','None');
+
+string = sprintf('VolumeCacheHits(t)= %f', mean(AC_raw(:,1)));
+disp(string)
+string = sprintf('VolumeCacheEvictions(t) = %f\n', mean(AC_raw(:,2)));
+disp(string)
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % (3) MAKE PLOT FOR VIRTUAL QUEUES (VQ) %
@@ -238,9 +251,10 @@ mkdir([outputfile,' ',currentTime]);
 %saveas(h,[outputfile, '.fig']);
 print('-dpdf','All Nodes All Objects.pdf');
 pdflist{1}=('All Nodes All Objects.pdf');
-movefile([foldername, 'All Nodes All Objects.pdf'],[foldername, outputfile,' ',currentTime,'\']);
+movefile([foldername, 'All Nodes All Objects.pdf'],[foldername, outputfile,' ',currentTime,'/']);
 close();
 %print('-depsc2',[outputfile, '.eps']);
+return
 
 % % % % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % % % % % (4) MAKE PLOT FOR NODES AND OBJECTS(NCOs) %
