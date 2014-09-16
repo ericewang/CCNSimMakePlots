@@ -638,3 +638,13 @@ display(['End Time: ' datestr(now)])
 %clear AR_parsedNodes AC_parsedNodes VQ_parsedNodes
 %clear entryType entryTimeStep entryNode
 %clear entryAR1 entryAR2 entryAR3 entryAC1 entryAC2 entryVQ1
+
+
+%
+infoVolumeRequestsCreated = mean(AR_raw(:,1));
+infoVolumeRequestsFulfilled = mean(AR_raw(:,2));
+infoDelaysRequestsFulfilled = mean(AR_raw(:,3));
+
+infoVolumeCacheHits = mean(AC_raw(:,1));
+infoVolumeCacheEvictions = mean(AC_raw(:,2));
+
